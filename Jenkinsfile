@@ -7,7 +7,7 @@ pipeline {
     }
 
     tools {
-        maven 'Maven3.9.9'  // Make sure this Maven tool is defined in Jenkins global tools
+        maven 'mvn_3.9.9'  // Make sure this Maven tool is defined in Jenkins global tools
     }
 
     stages {
