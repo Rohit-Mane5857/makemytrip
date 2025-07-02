@@ -34,6 +34,12 @@ pipeline {
                 echo 'WAR Artifact Created Successfully!'
             }
         }
+
+        stage('Check Git Version') {
+            steps {
+                sh 'git --version'
+            }
+        }
     }
 
     post {
