@@ -54,9 +54,9 @@ pipeline {
             steps {
                 script {
                     withCredentials([string(credentialsId: 'dockerhubCred', variable: 'dockerhubCred')]) {
-                        sh 'docker login docker.io -u Rohit-Mane5857 -p ${dockerhubCred}'
+                        sh 'docker login docker.io -u rohitmanep9054 -p ${dockerhubCred}'
                         echo 'Pushing Docker Image to Docker Hub...'
-                        sh 'docker push Rohit-Mane5857/makemytrip-ms:latest'
+                        sh 'docker push Rohit-Mane5857/makemytrip:latest'
                         echo 'Docker Image Pushed to Docker Hub Successfully!'
                     }
                 }
@@ -70,8 +70,8 @@ pipeline {
                         echo 'Tagging and Pushing Docker Image to ECR...'
                         sh '''
                             docker images
-                            docker tag makemytrip-ms:latest 533267238276.dkr.ecr.ap-south-1.amazonaws.com/makemytrip-ms:latest
-                            docker push 533267238276.dkr.ecr.ap-south-1.amazonaws.com/makemytrip-ms:latest
+                            docker tag makemytrip:latest 533267238276.dkr.ecr.ap-south-1.amazonaws.com/makemytrip:latest
+                            docker push 533267238276.dkr.ecr.ap-south-1.amazonaws.com/makemytrip:latest
                         '''
                         echo 'Docker Image Pushed to Amazon ECR Successfully!'
                     }
@@ -83,9 +83,9 @@ pipeline {
             steps {
                 echo 'Cleaning Up Local Docker Images...'
                 sh '''
-                    docker rmi Rohit-Mane5857/makemytrip-ms:latest || echo "Image not found or already deleted"
-                    docker rmi makemytrip-ms:latest || echo "Image not found or already deleted"
-                    docker rmi 533267238276.dkr.ecr.ap-south-1.amazonaws.com/makemytrip-ms:latest || echo "Image not found or already deleted"
+                    docker rmi Rohit-Mane5857/makemytrip:latest || echo "Image not found or already deleted"
+                    docker rmi makemytrip:latest || echo "Image not found or already deleted"
+                    docker rmi 533267238276.dkr.ecr.ap-south-1.amazonaws.com/makemytrip:latest || echo "Image not found or already deleted"
                     docker image prune -f
                 '''
                 echo 'Local Docker Images Cleaned Up Successfully!'
