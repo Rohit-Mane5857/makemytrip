@@ -42,12 +42,14 @@ pipeline {
                 echo 'Docker Image Build Completed!'
             }
         }
+
         stage('Docker Image Scanning') {
             steps {
                 echo 'Scanning Docker Image with Trivy...'
                 echo 'Docker Image Scanning Completed!'
             }
         }
+
         stage('Push Docker Image to Docker Hub') {
             steps {
                 script {
@@ -60,6 +62,7 @@ pipeline {
                 }
             }
         }
+
         stage('Push Docker Image to Amazon ECR') {
             steps {
                 script {
@@ -88,15 +91,14 @@ pipeline {
                 echo 'Local Docker Images Cleaned Up Successfully!'
             }
         }
+    }
 
-
-        post {
+    post {
         success {
             echo '✅ Build completed successfully.'
         }
         failure {
             echo '❌ Build failed.'
-          }
-       }
+        }
     }
 }
