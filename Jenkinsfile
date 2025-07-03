@@ -38,7 +38,7 @@ pipeline {
         stage('Build & Tag Docker Image') {
             steps {
                 echo 'Building Docker Image with Tags...'
-                sh "docker build -t Rohit-Mane5857/makemytrip-ms:latest -t makemytrip-ms:latest ."
+                sh "docker build -t Rohit-Mane5857/makemytrip:latest -t makemytrip:latest ."
                 echo 'Docker Image Build Completed!'
             }
         }
