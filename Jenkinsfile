@@ -56,7 +56,7 @@ pipeline {
                     withCredentials([string(credentialsId: 'dockerhubCred', variable: 'dockerhubCred')]) {
                         sh 'docker login docker.io -u rohitmanep9054 -p ${dockerhubCred}'
                         echo 'Pushing Docker Image to Docker Hub...'
-                        sh 'docker push Rohit-Mane5857/makemytrip:latest'
+                        sh 'docker push rohitmanep9054/makemytrip:latest'
                         echo 'Docker Image Pushed to Docker Hub Successfully!'
                     }
                 }
