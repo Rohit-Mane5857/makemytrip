@@ -38,7 +38,7 @@ pipeline {
         stage('Build & Tag Docker Image') {
             steps {
                 echo 'Building Docker Image with Tags...'
-                sh "docker build -t satyam88/booking-ms:latest -t booking-ms:latest ."
+                sh "docker build -t Rohit-Mane5857/makemytrip-ms:latest -t makemytrip-ms:latest ."
                 echo 'Docker Image Build Completed!'
             }
         }
@@ -52,9 +52,9 @@ pipeline {
             steps {
                 script {
                     withCredentials([string(credentialsId: 'dockerhubCred', variable: 'dockerhubCred')]) {
-                        sh 'docker login docker.io -u satyam88 -p ${dockerhubCred}'
+                        sh 'docker login docker.io -u Rohit-Mane5857 -p ${dockerhubCred}'
                         echo 'Pushing Docker Image to Docker Hub...'
-                        sh 'docker push satyam88/booking-ms:latest'
+                        sh 'docker push Rohit-Mane5857/makemytrip-ms:latest'
                         echo 'Docker Image Pushed to Docker Hub Successfully!'
                     }
                 }
@@ -67,8 +67,8 @@ pipeline {
                         echo 'Tagging and Pushing Docker Image to ECR...'
                         sh '''
                             docker images
-                            docker tag booking-ms:latest 533267238276.dkr.ecr.ap-south-1.amazonaws.com/booking-ms:latest
-                            docker push 533267238276.dkr.ecr.ap-south-1.amazonaws.com/booking-ms:latest
+                            docker tag makemytrip-ms:latest 533267238276.dkr.ecr.ap-south-1.amazonaws.com/makemytrip-ms:latest
+                            docker push 533267238276.dkr.ecr.ap-south-1.amazonaws.com/makemytrip-ms:latest
                         '''
                         echo 'Docker Image Pushed to Amazon ECR Successfully!'
                     }
@@ -80,9 +80,9 @@ pipeline {
             steps {
                 echo 'Cleaning Up Local Docker Images...'
                 sh '''
-                    docker rmi satyam88/booking-ms:latest || echo "Image not found or already deleted"
-                    docker rmi booking-ms:latest || echo "Image not found or already deleted"
-                    docker rmi 533267238276.dkr.ecr.ap-south-1.amazonaws.com/booking-ms:latest || echo "Image not found or already deleted"
+                    docker rmi Rohit-Mane5857/makemytrip-ms:latest || echo "Image not found or already deleted"
+                    docker rmi makemytrip-ms:latest || echo "Image not found or already deleted"
+                    docker rmi 533267238276.dkr.ecr.ap-south-1.amazonaws.com/makemytrip-ms:latest || echo "Image not found or already deleted"
                     docker image prune -f
                 '''
                 echo 'Local Docker Images Cleaned Up Successfully!'
