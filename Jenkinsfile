@@ -66,12 +66,12 @@ pipeline {
         stage('Push Docker Image to Amazon ECR') {
             steps {
                 script {
-                    withDockerRegistry([credentialsId: 'ecr:ap-south-1:ecr-credentials', url: "https://533267238276.dkr.ecr.ap-south-1.amazonaws.com"]) {
+                    withDockerRegistry([credentialsId: 'ecr:ap-south-1:ecr-credentials', url: "https://296062549097.dkr.ecr.ap-south-1.amazonaws.com"]) {
                         echo 'Tagging and Pushing Docker Image to ECR...'
                         sh '''
                             docker images
-                            docker tag makemytrip:latest 533267238276.dkr.ecr.ap-south-1.amazonaws.com/makemytrip:latest
-                            docker push 533267238276.dkr.ecr.ap-south-1.amazonaws.com/makemytrip:latest
+                            docker tag makemytrip:latest 296062549097.dkr.ecr.ap-south-1.amazonaws.com/makemytrip:latest
+                            docker push 296062549097.dkr.ecr.ap-south-1.amazonaws.com/makemytrip:latest
                         '''
                         echo 'Docker Image Pushed to Amazon ECR Successfully!'
                     }
@@ -85,7 +85,7 @@ pipeline {
                 sh '''
                     docker rmi Rohit-Mane5857/makemytrip:latest || echo "Image not found or already deleted"
                     docker rmi makemytrip:latest || echo "Image not found or already deleted"
-                    docker rmi 533267238276.dkr.ecr.ap-south-1.amazonaws.com/makemytrip:latest || echo "Image not found or already deleted"
+                    docker rmi 296062549097.dkr.ecr.ap-south-1.amazonaws.com/makemytrip:latest || echo "Image not found or already deleted"
                     docker image prune -f
                 '''
                 echo 'Local Docker Images Cleaned Up Successfully!'
