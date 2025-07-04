@@ -96,7 +96,7 @@ pipeline {
 
         stage('Clean Up Local Docker Images') {
             steps {
-                echo 'Cleaning Up Local Docker Images...'
+                echo 'Cleaning Up Local Docker Images....'
                 sh '''
                     docker rmi Rohit-Mane5857/makemytrip:latest || echo "Image not found or already deleted"
                     docker rmi makemytrip:latest || echo "Image not found or already deleted"
